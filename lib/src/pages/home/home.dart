@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_4/src/global.dart';
@@ -9,6 +10,10 @@ import 'package:flutter_application_4/src/pages/splash.dart';
 import 'package:http/http.dart' as https;
 
 import '../../student_model/student_model.dart';
+
+final Uri _url = Uri.parse('https://www.soa.ac.in/iter-exam-notice/');
+final Uri _url2 = Uri.parse(
+    'https://drive.google.com/drive/folders/1vpC6mr2Flkqvpbm2DHgN44BJ0ad223Dh');
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -138,37 +143,65 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: Colors.black)),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 53,
                           ),
-                          Container(
-                            height: 120,
-                            width: 120,
-                            color: Colors.black.withOpacity(.2),
-                            child: const Image(
-                                height: 100,
-                                width: 100,
-                                image: AssetImage(
-                                  "images/exam.png",
-                                )),
+                          GestureDetector(
+                            onTap: () {
+                              _launchUrl();
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: const Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/exam.png",
+                                      )),
+                                ),
+                                Text("Exam Notice   ",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
-                          Container(
-                            height: 120,
-                            width: 120,
-                            color: Colors.black.withOpacity(.2),
-                            child: const Image(
-                                height: 100,
-                                width: 100,
-                                image: AssetImage(
-                                  "images/pi.png",
-                                )),
-                          )
+                          GestureDetector(
+                            onTap: () {
+                              _launchUrl();
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/no.png",
+                                      )),
+                                ),
+                                Text("Study Materials ",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -176,33 +209,64 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 53,
                           ),
-                          Container(
-                            height: 120,
-                            width: 120,
-                            color: Colors.black.withOpacity(.2),
-                            child: const Image(
-                                height: 100,
-                                width: 100,
-                                image: AssetImage(
-                                  "images/e.png",
-                                )),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Attendencepage()));
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: const Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/roll-call.png",
+                                      )),
+                                ),
+                                Text("Your Attendance",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
-                          Container(
-                              height: 120,
-                              width: 120,
-                              color: Colors.black.withOpacity(.2),
-                              child: const Image(
-                                  height: 100,
-                                  width: 100,
-                                  image: AssetImage(
-                                    "images/roll-call.png",
-                                  )))
+                          GestureDetector(
+                            onTap: () {
+                              _launchUrl();
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/as.png",
+                                      )),
+                                ),
+                                Text("Achievements ",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                       SizedBox(
@@ -210,61 +274,77 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 53,
                           ),
-                          Container(
-                            height: 120,
-                            width: 120,
-                            color: Colors.black.withOpacity(.2),
-                            child: const Image(
-                                height: 100,
-                                width: 100,
-                                image: AssetImage(
-                                  "images/n.png",
-                                )),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Container(
-                              height: 120,
-                              width: 120,
-                              color: Colors.black.withOpacity(.2),
-                              child: const Image(
-                                  height: 100,
-                                  width: 100,
-                                  image: AssetImage(
-                                    "images/no.png",
-                                  )))
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                shape: const StadiumBorder()),
-                            onPressed: () {
+                          GestureDetector(
+                            onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
                                       const Attendencepage()));
                             },
-                            child: Text(
-                              "get you attendance",
-                              style: GoogleFonts.ubuntu(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: Colors.black),
-                            )),
-                      )
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: const Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/n.png",
+                                      )),
+                                ),
+                                Text("Notice",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              _launchUrl();
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 120,
+                                  width: 120,
+                                  color: Colors.black.withOpacity(.2),
+                                  child: Image(
+                                      height: 100,
+                                      width: 100,
+                                      image: AssetImage(
+                                        "images/research.png",
+                                      )),
+                                ),
+                                Text("Result ",
+                                    style: GoogleFonts.ubuntu(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color: Colors.black))
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
     );
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
